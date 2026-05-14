@@ -143,7 +143,7 @@ function statusType(status: string) {
 
 function selectCategory(id: number | null) {
   selectedCategoryId.value = id
-  templateStore.fetchTemplates(id ? { category_id: id } : undefined)
+  templateStore.fetchTemplates(id ? { category_id: id, status: 'active' } : { status: 'active' })
 }
 
 function resetCategoryForm() {
@@ -221,7 +221,7 @@ async function handleArchive(tpl: Template) {
 
 onMounted(() => {
   categoryStore.fetchCategories()
-  templateStore.fetchTemplates()
+  templateStore.fetchTemplates({ status: 'active' })
 })
 </script>
 

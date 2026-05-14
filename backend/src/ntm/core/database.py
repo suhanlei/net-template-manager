@@ -11,7 +11,7 @@ class Base(DeclarativeBase):
 settings = get_settings()
 engine = create_engine(
     settings.database_url.replace("+aiosqlite", ""),
-    echo=settings.debug,
+    echo=False,
     connect_args={"check_same_thread": False},
 )
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
