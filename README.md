@@ -43,6 +43,14 @@ net-template-manager/
 │   │   ├── types/            # TypeScript 类型定义
 │   │   └── views/            # 页面视图
 │   └── package.json
+├── templates/                # 配置模板文件（按厂商/功能分类）
+│   ├── H3C/
+│   │   ├── CORE/             # 核心层配置
+│   │   ├── AGG/              # 汇聚层配置
+│   │   └── ACCESS/          # 接入层配置
+│   └── Cisco/
+│       ├── CORE/
+│       └── ACCESS/
 ├── .env.example
 └── .gitignore
 ```
@@ -60,7 +68,7 @@ cp .env.example .env
 ```env
 GITHUB_TOKEN=ghp_your_token_here
 GITHUB_REPO=owner/repo-name
-GITHUB_BRANCH=main
+GITHUB_BRANCH=master
 API_KEY=your-api-key-here
 DATABASE_URL=sqlite:///./data/ntm.db
 APP_HOST=0.0.0.0
@@ -98,15 +106,21 @@ npm run dev
 |------|------|------|
 | Categories | `GET/POST /categories` | 分类列表 / 创建分类 |
 | Templates | `GET/POST /templates` | 模板列表（分页、筛选）/ 创建模板 |
-| | `GET/PATCH/DELETE /templates/{id}` | 模板详情 / 更新 / 归档 |
+| | `GET/PUT/DELETE /templates/{id}` | 模板详情 / 更新 / 归档 |
 | | `POST /templates/{id}/versions` | 创建新版本 |
 | | `GET /templates/{id}/versions` | 版本历史列表 |
+| | `GET /templates/{id}/versions/{v}` | 查看版本内容 |
+| | `GET /templates/{id}/versions/{v1}/diff/{v2}` | 版本差异对比 |
+| | `POST /templates/{id}/versions/{v}/commit` | 提交版本到 GitHub |
 | Releases | `GET/POST /releases` | 发布列表 / 创建发布 |
-| | `GET/PATCH /releases/{id}` | 发布详情 / 更新 |
+| | `GET/PUT /releases/{id}` | 发布详情 / 更新 |
+| | `POST /releases/{id}/add-template` | 添加模板到发布 |
+| | `DELETE /releases/{id}/templates/{tid}` | 从发布中移除模板 |
+| | `POST /releases/{id}/generate-changelog` | 自动生成 Changelog |
 | | `POST /releases/{id}/publish` | 发布到 GitHub（Tag + Release） |
-| GitHub | `GET /github/test` | 测试 GitHub 连接 |
-| | `GET /github/repo` | 获取仓库信息 |
-| | `GET /github/commits` | 同步最近提交记录 |
+| GitHub | `GET /github/status` | 查看 GitHub 连接状态 |
+| | `POST /github/test-connection` | 测试 GitHub 连接 |
+| | `GET /github/repo-info` | 获取仓库信息 |
 | System | `GET /system/health` | 健康检查 |
 
 ## 版本号规则
