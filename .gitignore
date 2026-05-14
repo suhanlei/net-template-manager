@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Database
+*.db
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Frontend build
+frontend/dist/
+
+# OS
+Thumbs.db
+.DS_Store
