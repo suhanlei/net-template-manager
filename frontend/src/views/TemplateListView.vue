@@ -103,7 +103,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="GitHub Path">
-          <el-input v-model="templateForm.github_path" placeholder="e.g. CORE/S12500.cfg" />
+          <el-input v-model="templateForm.github_path" placeholder="e.g. templates/H3C/CORE/S12500.cfg" />
         </el-form-item>
       </el-form>
       <template #footer>
